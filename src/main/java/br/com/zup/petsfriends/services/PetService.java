@@ -21,4 +21,13 @@ public class PetService {
     public List<Pet> retornarListaDeTodosOsPets(){
         return pets;
     }
+
+    public Pet pesquisarPeloEmailDoDono(String email){
+        for(Pet pet : pets){
+            if(pet.getEmail().equalsIgnoreCase(email)){
+                return pet;
+            }
+        }
+        throw new RuntimeException("Pet não encontrado com esse email");
+    }
 }

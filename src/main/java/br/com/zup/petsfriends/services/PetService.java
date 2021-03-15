@@ -18,4 +18,7 @@ public class PetService {
         return pet;
     }
 
+    public List<Pet> retornarListaDeTodosOsPets(){
+        return pets;
+    }
 }

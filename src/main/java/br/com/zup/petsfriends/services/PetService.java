@@ -31,5 +31,9 @@ public class PetService {
         throw new RuntimeException("Pet não encontrado com esse email");
     }
 
+    public void deletarPet(Pet nome){
+        Pet pet = cadastrarPet(nome);
+        pets.remove(pets);
+    }
 
 }

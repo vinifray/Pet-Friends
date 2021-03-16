@@ -29,6 +29,7 @@ public class PetController {
         return ResumoPetDTO.converterPetParaDTO(pet);
     }
 
+<<<<<<< HEAD
     @GetMapping("{nome}/")
     public ResumoPetDTO procurarPeloNomeDoPet(@PathVariable String nome) {
         Pet pet = petService.procurarPeloNomeDoPet(nome);
@@ -44,6 +45,16 @@ public class PetController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, erro.getMessage());
         }
 
+=======
+    @DeleteMapping("{nome}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletarPet(@PathVariable Pet nome){
+        try {
+            petService.deletarPet(nome);
+        }catch (RuntimeException erro){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, erro.getMessage());
+        }
+>>>>>>> e9d3db4 (Incluir Delete na PetController)
     }
 }
 

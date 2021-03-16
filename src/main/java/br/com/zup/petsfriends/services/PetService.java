@@ -43,12 +43,29 @@ public class PetService {
     }
 
     public boolean deletarNomeDono(Pet pet) {
-        for(Pet animalEstimacao: pets){
-            if(animalEstimacao.getNome().equalsIgnoreCase(animalEstimacao.getNome())){
+        for (Pet animalEstimacao : pets) {
+            if (animalEstimacao.getNome().equalsIgnoreCase(animalEstimacao.getNome())) {
                 pets.remove(animalEstimacao);
                 return true;
             }
         }
         throw new RuntimeException("Nome não encontrado!");
+    }
+
+    public Pet deletarAnimalPeloEmailDoDono(String emailDoDono) {
+        Pet petDeletado = null;
+
+        for (Pet pet : pets) {
+            if (pet.getEmail().equalsIgnoreCase(emailDoDono)) {
+                petDeletado = pet;
+                pets.remove(pet);
+            }
+        }
+
+        if (petDeletado == null) {
+            throw new RuntimeException("Não existe animais com esse e-mail!");
+        }
+
+        return petDeletado;
     }
 }

@@ -43,4 +43,13 @@ public class ProdutoService {
         throw new RuntimeException("Produto não encontrado");
     }
 
+    public Produto pesquisarProdutoPeloNome(String nome) {
+        for (Produto produto : estoque) {
+            if (produto.getNome().equalsIgnoreCase(nome)) {
+                return produto;
+            }
+        }
+        throw new RuntimeException("Produto não encontrado");
+    }
+
 }

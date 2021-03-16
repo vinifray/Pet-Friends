@@ -45,6 +45,18 @@ public class PetController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, erro.getMessage());
         }
     }
+
+    @DeleteMapping({"/dono/{nome}/"})
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void  deletarNomeDoDono(@PathVariable String nome) {
+
+        try{
+            petService.deletarNomeDono(nome);
+        }catch (RuntimeException erro){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }
 
 

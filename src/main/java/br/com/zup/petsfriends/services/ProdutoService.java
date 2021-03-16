@@ -5,7 +5,6 @@ import br.com.zup.petsfriends.exceptions.ListaDeProdutosNaoEncontradosException;
 import br.com.zup.petsfriends.models.Produto;
 import org.springframework.stereotype.Service;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,4 +42,11 @@ public class ProdutoService {
         throw new RuntimeException("Produto não encontrado");
     }
 
+    public void deletarProdutoPeloNome(String nomeDoProduto) {
+        ResumoProdutoDTO resumo = new ResumoProdutoDTO();
+        resumo.setNome(nomeDoProduto);
+
+        Produto produto = pesquisarProdutoPeloNome(resumo);
+        estoque.remove(produto);
+    }
 }

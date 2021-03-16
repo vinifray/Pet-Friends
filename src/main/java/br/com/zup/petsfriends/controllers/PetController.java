@@ -51,6 +51,7 @@ public class PetController {
     }
 
     @DeleteMapping("{email}/")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public Pet deleteAnimalPeloEmailDoDono(@PathVariable String email) {
         try {
             return petService.deletarAnimalPeloEmailDoDono(email);

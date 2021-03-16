@@ -2,13 +2,24 @@ package br.com.zup.petsfriends.dtos;
 
 import br.com.zup.petsfriends.models.Pet;
 
-import java.time.LocalDate;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class CadastroPetDTO {
+    @NotNull
+    @Size(min=2, max=30)
     private String nome;
+    @NotNull
+    @Size(min=2, max=30)
     private String raca;
+    @NotNull
+    @Size(min=2, max=30)
     private String especie;
+    @NotNull
+    @Size(min=2, max=30)
     private String nomeDono;
+    @Email(message = "E-mail inválido")
     private String email;
 
     public CadastroPetDTO() {

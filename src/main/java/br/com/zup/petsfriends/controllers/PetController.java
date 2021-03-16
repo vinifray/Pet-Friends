@@ -29,6 +29,7 @@ public class PetController {
         return ResumoPetDTO.converterPetParaDTO(pet);
     }
 
+
     @GetMapping("{nome}/")
     public ResumoPetDTO procurarPeloNomeDoPet(@PathVariable String nome) {
         Pet pet = petService.procurarPeloNomeDoPet(nome);

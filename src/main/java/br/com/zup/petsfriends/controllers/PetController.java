@@ -43,10 +43,19 @@ public class PetController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void  deletarNomeDoDono(@PathVariable String nome) {
 
-        try{
+        try {
             petService.deletarNomeDono(nome);
-        }catch (RuntimeException erro){
+        } catch (RuntimeException erro) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("{email}/")
+    public Pet deleteAnimalPeloEmailDoDono(@PathVariable String email) {
+        try {
+            return petService.deletarAnimalPeloEmailDoDono(email);
+        } catch (RuntimeException ex) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
         }
     }
 

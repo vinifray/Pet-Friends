@@ -31,6 +31,7 @@ public class PetService {
         throw new RuntimeException("Pet não encontrado com esse email");
     }
 
+
     public Pet procurarPeloNomeDoPet(String nome) {
         for (Pet pet : pets) {
             if ( pet.getNome().equalsIgnoreCase(nome) ) {
@@ -40,3 +41,7 @@ public class PetService {
         throw new RuntimeException("Pet não encontrado com esse nome");
     }
 }
+
+
+
+

@@ -7,6 +7,7 @@ import br.com.zup.petsfriends.services.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("pets/")
@@ -17,15 +18,45 @@ public class PetController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Pet cadastrarPet(@RequestBody CadastroPetDTO cadastroPetDTO){
+    public Pet cadastrarPet(@RequestBody CadastroPetDTO cadastroPetDTO) {
         Pet pet = cadastroPetDTO.converterDTOParaPet();
         return petService.cadastrarPet(pet);
     }
 
     @GetMapping("{email}/")
-    public ResumoPetDTO pesquisarPetPorEmail(@PathVariable String email){
+    public ResumoPetDTO pesquisarPetPorEmail(@PathVariable String email) {
         Pet pet = petService.pesquisarPeloEmailDoDono(email);
         return ResumoPetDTO.converterPetParaDTO(pet);
     }
 
+
+    @GetMapping("{nome}/")
+    public ResumoPetDTO procurarPeloNomeDoPet(@PathVariable String nome) {
+        Pet pet = petService.procurarPeloNomeDoPet(nome);
+        return ResumoPetDTO.converterPetParaDTO(pet);
+    }
+
+    @DeleteMapping("{nome}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletarPet(@PathVariable Pet nome) {
+        try {
+            petService.deletarPet(nome);
+        } catch (RuntimeException erro) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, erro.getMessage());
+        }
+    }
+
+    @DeleteMapping({"/dono/{nome}/"})
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void  deletarNomeDoDono(@PathVariable String nome) {
+
+        try{
+            petService.deletarNomeDono(nome);
+        }catch (RuntimeException erro){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }
+
+

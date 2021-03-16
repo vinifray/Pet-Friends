@@ -11,23 +11,56 @@ import java.util.List;
 public class PetService {
     private static List<Pet> pets = new ArrayList<>();
 
-    public Pet cadastrarPet(Pet pet){
+    public Pet cadastrarPet(Pet pet) {
         pet.setDataEntrada(LocalDate.now());
         pets.add(pet);
 
         return pet;
     }
 
-    public List<Pet> retornarListaDeTodosOsPets(){
+    public List<Pet> retornarListaDeTodosOsPets() {
         return pets;
     }
 
-    public Pet pesquisarPeloEmailDoDono(String email){
-        for(Pet pet : pets){
-            if(pet.getEmail().equalsIgnoreCase(email)){
+    public Pet pesquisarPeloEmailDoDono(String email) {
+        for (Pet pet : pets) {
+            if ( pet.getEmail().equalsIgnoreCase(email) ) {
                 return pet;
             }
         }
         throw new RuntimeException("Pet não encontrado com esse email");
     }
+
+    public void deletarPet(Pet nome){
+        Pet pet = cadastrarPet(nome);
+        pets.remove(pets);
+    }
+
+    public Pet procurarPeloNomeDoPet(String nome) {
+        for (Pet pet : pets) {
+            if ( pet.getNome().equalsIgnoreCase(nome) ) {
+                return pet;
+            }
+        }
+        throw new RuntimeException("Pet não encontrado com esse nome");
+    }
+    public void deletarNomeDono(String nome) throws RuntimeException{
+        Pet estimacao = new Pet();
+        estimacao.setNome(nome);
+        deletarNomeDono(estimacao);
+    }
+
+    public boolean deletarNomeDono(Pet pet) {
+        for(Pet animalEstimacao: pets){
+            if(animalEstimacao.getNome().equalsIgnoreCase(animalEstimacao.getNome())){
+                pets.remove(animalEstimacao);
+                return true;
+            }
+        }
+        throw new RuntimeException("Nome não encontrado!");
+    }
 }
+
+
+
+

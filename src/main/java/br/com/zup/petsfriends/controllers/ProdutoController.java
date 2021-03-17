@@ -17,6 +17,7 @@ public class ProdutoController {
     private ProdutoService produtoService;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public List<Produto> realizarCompra(@RequestBody CompraDTO compraDTO){
         System.out.println(compraDTO.getProdutos());
         return produtoService.pesquisarProdutosPelosNomes(compraDTO.getProdutos());
